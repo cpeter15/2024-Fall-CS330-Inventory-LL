@@ -30,6 +30,7 @@ public class Inventory
         // lhs needs to have items added to it.
         // rhs's size is needed
         // lhs.????(rhs.????)
+        lhs.addItems(rhs.size());
     }
 
     /**
@@ -93,8 +94,7 @@ public class Inventory
      */
     public boolean isFull()
     {
-        // Replace the next line
-        return false;
+        return capacity == slots.currentSize;
     }
 
     /**
@@ -119,6 +119,15 @@ public class Inventory
     {
         // Add the necessary sequential search loop
 
+        LinkedList.Node<ItemStack> currNode = slots.head;
+
+        while (currNode != null) {
+            if (currNode.data.equals(key)) {
+                return currNode.data;
+            }
+            currNode = currNode.next;
+        }
+
         return null;
     }
 
@@ -133,6 +142,10 @@ public class Inventory
 
         // Use the appendNode/add logic from Review 1 as your starting point
         // Once we reach this function... we know that `toAdd` must be stored
+
+        slots.tail.next = newNode;
+        slots.tail = newNode;
+        slots.currentSize++;
     }
 
     /**
