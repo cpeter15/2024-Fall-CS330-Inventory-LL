@@ -146,12 +146,12 @@ public class Inventory
         if (slots.head == null) {
             slots.head = newNode;
             slots.tail = newNode;
-            slots.currentSize++;
         } else {
             slots.tail.next = newNode;
             slots.tail = newNode;
-            slots.currentSize++;
         }
+        
+        slots.currentSize++;
     }
 
     /**
